@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cristian</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+	<link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/open-sauce-two" type="text/css"/>
+	<link rel="stylesheet" href="./css/Boo.css">
+	<script src="./js/Boo.js"></script>
+
+	<style>
+		@font-face {
+			font-family: Regine;
+			src: url(./font/The-Regine-Demo.otf);
+		}
+
+		:root{
+			--clr1: #fefefe;
+			--clr2: #dedede;
+			--clr3: #3f4558;
+			--clr4: #222222;
+			--clr5: #010101;
+		}
+
+		*:focus{ outline: none; }
+
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body{
+			background: var(--clr1);
+			color: var(--clr4);
+			font-family: 'OpenSauceTwoRegular';
+		}
+
+		/* NAV */
+		
+		#nav{
+			position: fixed;
+			top: 0;
+			width: 100%;
+			height: 55px;
+			background: var(--clr3);
+			z-index: 1000;
+		}
+
+		#brand{
+			font-family: 'Regine';
+			font-size: 1.5em;
+			line-height: 0;
+			color: var(--clr1);
+		}
+		
+		#menu__aside{
+			position: fixed;
+			top: -125%;
+			left: 0;
+			width: 100%;
+			height: 100vh;
+			z-index: -1;
+			background: var(--clr3);
+			transition: all 0.3s ease-out;
+		}
+		
+		#menu__aside #menu{
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 100%;
+			list-style: none;
+			display: block;
+		}
+		
+		#menu__aside #menu a{
+			margin: 5px 0;
+			font-size: 20px;
+			display: block;
+			cursor: pointer;
+		}
+		
+		#menu__aside.show{ top: 0; }
+		#menu__aside.hide{ top: -125% }
+		
+		#nav a{ color: var(--clr2); }
+		#menu a:hover, #nav a:hover{ color: var(--clr1); }
+		a#brand{ color: var(--clr1); }
+		#icon__menu{ color: var(--clr2); transform: rotate(45deg); transition: all 0.3s ease-out; }
+		#icon__menu:hover{ cursor: pointer; color: var(--clr1); }
+		#icon__menu, input[type="checkbox"]{ display: none; }
+		
+		@media(max-width: 991px) {
+			body.disabledScroll{overflow: hidden;}
+			#icon__menu{ display: block; }
+			#menu__aside { display: block; }
+		}
+
+		#section__title{
+			color: var(--clr4);
+			font-size: 2.5em;
+			font-weight: bold;
+			font-family: verdana;
+		}
+
+		/* HOME */
+
+		#home{
+			width: 100%;
+			height: 100vh;
+			display: flex;
+			align-items: center;
+			overflow: hidden;
+			background: var(--clr3);
+			color: var(--clr2);
+		}
+
+		#home__info{
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			color: var(--clr1);
+			z-index: 1;
+		}
+
+		#home__info h1{
+			font-family: 'Regine';
+			font-size: 5em;
+		}
+
+		#home__cubo{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			overflow: hidden;
+			opacity: 0.5;
+		}
+
+		#home__btn{
+			background: var(--clr1);
+			color: var(--clr3);
+		}
+
+		#home__btn:hover{ background: var(--clr2); }
+
+		@media(max-width: 991px) {
+			#home__info{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				max-width: 500px;
+				z-index: 2;
+			}
+
+			#home__info h1{ font-size: 4em; }
+			
+			#home__cubo{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				opacity: 0.25;
+				z-index: 1;
+			}
+		}
+
+		/* SERVICES */
+
+		.services__icon{
+			font-size: 60px;
+		}
+
+		/* PROJECTS */
+
+		.card{
+			background: var(--clr1);
+			border-color: var(--clr2);
+		}
+
+		.btn-project{
+			background: var(--clr3);
+			color: var(--clr1);
+		}
+
+		.btn-project:hover{
+			background: var(--clr4);
+			color: var(--clr1);
+		}
+
+		@media(max-width: 991px) {
+			.card-columns {column-count: 2;}
+		}
+
+		@media(max-width: 768px) {
+			.card-columns {column-count: 1;}
+		}
+
+		/* FOOTER */
+
+		footer {
+			background: var(--clr3);
+			color: var(--clr2);
+		}
+
+		footer h5 {
+			color: var(--clr1);
+		}
+
+		#footer__links a{
+			color: var(--clr2);
+			text-decoration: none;
+		}
+
+		#footer__links a:hover{
+			color: var(--clr1);
+		}
+
+		#footer__icon{
+			font-size: 18px;
+		}
+	</style>
+</head>
+<body>
+	<!-- NAV -->
+	<nav class="navbar navbar-expand-lg mx-auto" id="nav">
+		<a class="navbar-brand" id="brand" href="#home" title="Home">CV</a>
+		
+		<div class="collapse navbar-collapse">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"> <a class="nav-link" href="#about" title="Sobre mí">Sobre mí</a> </li>
+				<li class="nav-item"> <a class="nav-link" href="#services" title="Servicios">Servicios</a> </li>
+				<li class="nav-item"> <a class="nav-link" href="#projects" title="Proyectos">Proyectos</a> </li>
+			</ul>
+		</div>
+		
+		<input type="checkbox" id="nav__btn" name="status">
+		<label for="nav__btn" class="my-auto" id="icon__menu"><ion-icon name="close"></ion-icon></label>
+		
+		<div id="menu__aside">
+			<div id="menu">
+				<a class="nav-link" href="#about" title="Sobre mí">Sobre mí</a>
+				<a class="nav-link" href="#services" title="Servicios">Servicios</a>
+				<a class="nav-link" href="#projects" title="Proyectos">Proyectos</a>
+			</div>
+		</div>
+	</nav>
+
+	<section id="home">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 px-lg-5" id="home__info">
+					<h1>Cristian Velazquez</h1>
+					<p class="p-2">¿Estas buscando a alguien que te ayude a desarrollar tu sistema o quieres darle seguimiento a uno? Pues ya no busques más. Porque soy tu mejor opción.</p>
+				</div>
+				
+				<div class="col-md-6" id="home__cubo">
+					<canvas id="cubo"></canvas>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-3" id="about">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 p-4 text-center Boo Bottom">
+					<h1 id="section__title">Sobre mí</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="d-flex flex-column justify-content-center p-3 col-lg-8">
+					<p class="mb-3 lead Boo Bottom"> Hola. Me llamo Cristian y soy un ingeniero en sistemas computacionales especializado en ingeniería de software. </p>
+					<p class="mb-1 Boo Bottom">Gracias a mi formación académica, puedo comprender con facilidad las demandas de mis clientes y desarrollar sistemas informáticos basados en ello.</p>
+					<p class="mt-1 Boo Bottom">También, me gusta analizar y diseñar programas enfocados a las necesidades de las personas.</p>
+				</div>
+
+				<div class="p-0 my-3 col-lg-4 Boo RotateX"> <img class="img-fluid d-block" src="./img/about.jpg"> </div>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-3" id="services">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 p-4 text-center Boo Bottom">
+					<h1 id="section__title">Servicios</h1>
+				</div>
+			</div>
+
+			<div class="row justify-content-center text-center">
+				<div class="col-lg-4 col-md-6 p-3 Boo ZoomEx">
+					<div class="d-block mb-2"><ion-icon class="services__icon" name="search-outline"></ion-icon></div>
+					<h5>Análisis y diseño</h5>
+					<p>Identifico y controlo los requerimientos del sistema para este que brinde una mejor calidad.</p>
+				</div>
+
+				<div class="col-lg-4 col-md-6 p-3 Boo ZoomEx">
+					<div class="d-block mb-2"><ion-icon class="services__icon" name="desktop-outline"></ion-icon></div>
+					<h5>Desarrollo de software</h5>
+					<p>Creo y administro programas que brinden productividad y competitividad a las organizaciones.</p>
+				</div>
+
+				<div class="col-lg-4 col-md-6 p-3 Boo ZoomEx">
+					<div class="d-block mb-2"><ion-icon class="services__icon" name="analytics"></ion-icon></div>
+					<h5>Administrador de bases de datos</h5>
+					<p>Diseño y gestiono bases de datos de acuerdo a los requerimientos del sistema.</p>
+				</div>
+
+				<div class="col-lg-4 col-md-6 p-3 Boo ZoomEx">
+					<div class="d-block mb-2"><ion-icon class="services__icon" name="information-circle"></ion-icon></div>
+					<h5>Consultor técnico</h5>
+					<p>Atiendo dudas y soluciono problemas que puedan surgir durante el desarrollo o la implementación de un sistema.</p>
+				</div>
+
+				<div class="col-lg-4 col-md-6 p-3 Boo ZoomEx">
+					<div class="d-block mb-2"><ion-icon class="services__icon" name="finger-print"></ion-icon></div>
+					<h5>Inteligencia Artificial</h5>
+					<p>Integro programas basados en IA capaces de agilizar procesos y realizar tareas complejas.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-3" id="projects">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 p-4 text-center Boo Bottom">
+					<h1 id="section__title">Proyectos</h1>
+				</div>
+			</div>
+			
+			<div class="card-columns py-3">
+				<div class="card Boo RotateY">
+					<img class="card-img-top" src="./img/Boo.png" alt="Suresh Dasari Card">
+					<div class="card-body">
+						<h5 class="card-title"> Boo </h5>
+						<p class="card-text">Boo, es una biblioteca de animaciones de scroll hecha con CSS y JavaScript</p>
+						<p class="card-text">Algunas de las animaciones de este portafolio fueron cradas con dicha biblioteca</p>
+						<a href="https://jarjat.github.io/boo/" target="_blank" class="btn btn-project btn-block">Ejemplo</a>
+						<a href="https://github.com/Jarjat/boo" target="_blank" class="btn btn-project btn-block">Mas información</a>
+					</div>
+				</div>
+
+				<div class="card Boo RotateY">
+					<img class="card-img-top" src="./img/Portfolio.png" alt="Suresh Dasari Card">
+					<div class="card-body">
+						<h5 class="card-title"> Mi portafolio </h5>
+						<p class="card-text">Puede que este no sea el portafolio web más creativo ni el mas elaborado que hayas visto. Eso es porque este portafolio no tiene exactamente lo que yo quiero, sino lo que necesitas saber de mí y eso es lo mas me importa.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer class="py-3">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-6 p-3">
+					<h5>Contacto</h5>
+					<ul class="list-unstyled" id="footer__links">
+						<li> <a href="mailto:VN.Cristian.1999@gmail.com" target="_blank" title="Email">VN.Cristian.1999@gmail.com</a> </li>
+						<li> Veracruz, Mx </li>
+					</ul>
+				</div>
+
+				<div class="col-lg-4 col-md-6 p-3">
+					<h5>Redes sociales</h5>
+					<div class="row">
+						<div class="col-md-12 d-flex align-items-center justify-content-between my-2" id="footer__links"> 
+							<a href="https://github.com/Jarjat" id="footer__icon" target="_blank" title="Github"><ion-icon name="logo-github"></ion-icon></a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6 p-3">
+					<h5>Descripción</h5>
+					<p class="mb-0">Ingeniero en sistemas computacionales especializado en ingeniería de software.</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<p class="mb-0 mt-2">© 2021 Cristian Velazquez. Todos los derechos reservados.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- IONICONS -->
+	<script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<script>
+		const links = document.querySelectorAll("#nav a");
+
+		links.forEach(link => {
+			link.addEventListener("click", clickHandler)
+		});
+
+		function clickHandler(e) {
+			e.preventDefault();
+			const href = this.getAttribute("href");
+			const offsetTop = document.querySelector(href).offsetTop -55;
+			if (window.innerWidth < 991 && menuBtn.checked == true) { menuBtn.click(); }
+			scroll({ top: offsetTop, behavior: "smooth" });
+		}
+
+
+		const body = document.querySelector("body");
+		const brand = document.getElementById("brand");
+		const navaside = document.getElementById("menu__aside");
+		const menuBtn = document.getElementById("nav__btn");
+		const iconMenu = document.getElementById("icon__menu");
+
+		menuBtn.onclick = ()=>{
+			if (menuBtn.checked) {
+				navaside.classList.add("show");
+				body.classList.add("disabledScroll");
+				iconMenu.style.transform = "rotate(0deg)";
+			} else {
+				navaside.classList.remove("show");
+				body.classList.remove("disabledScroll");
+				iconMenu.style.transform = "rotate(45deg)";
+			}
+		}
+
+		window.addEventListener("resize", () => {
+			if (window.innerWidth < 991 && menuBtn.checked == true) { menuBtn.click(); }
+		});
+
+		const COLOR_BG = getComputedStyle(document.documentElement).getPropertyValue('--clr3');
+		const COLOR_CUBE = getComputedStyle(document.documentElement).getPropertyValue('--clr2');
+		const SPEED_X = 0.05; // rps
+		const SPEED_Y = 0.15; // rps
+		const SPEED_Z = 0.10; // rps
+		const POINT3D = function(x, y, z) { this.x = x; this.y = y; this.z = z; };
+
+		// set up the canvas and context
+		var canvas = document.getElementById("cubo");
+		var ctx = canvas.getContext("2d");
+
+		// dimensions
+		var h = document.documentElement.clientHeight;
+		var w = document.documentElement.clientWidth;
+		canvas.height = h;
+		canvas.width = w;
+
+		// colours and lines
+		ctx.fillStyle = COLOR_BG;
+		ctx.strokeStyle = COLOR_CUBE;
+		ctx.lineWidth = w / 500;
+		ctx.lineCap = "round";
+
+		// cube parameters
+		var cx = w / 2;
+		var cy = h / 2;
+		var cz = 0;
+		var size = h / 5;
+		var vertices = [
+			new POINT3D(cx - size, cy - size, cz - size),
+			new POINT3D(cx + size, cy - size, cz - size),
+			new POINT3D(cx + size, cy + size, cz - size),
+			new POINT3D(cx - size, cy + size, cz - size),
+			new POINT3D(cx - size, cy - size, cz + size),
+			new POINT3D(cx + size, cy - size, cz + size),
+			new POINT3D(cx + size, cy + size, cz + size),
+			new POINT3D(cx - size, cy + size, cz + size)
+		];
+		var edges = [
+			[0, 1], [1, 2], [2, 3], [3, 0], // back face
+			[4, 5], [5, 6], [6, 7], [7, 4], // front face
+			[0, 4], [1, 5], [2, 6], [3, 7] // connecting sides
+		];
+		
+		// set up the animation loop
+		var timeDelta, timeLast = 0;
+		requestAnimationFrame(loop);
+
+		function loop(timeNow) {
+
+			// calculate the time difference
+			timeDelta = timeNow - timeLast;
+			timeLast = timeNow;
+
+			// background
+			ctx.fillRect(0, 0, w, h);
+
+			// rotate the cube along the z axis
+			let angle = timeDelta * 0.00001 * SPEED_Z * Math.PI * 2;
+			for (let v of vertices) {
+				let dx = v.x - cx;
+				let dy = v.y - cy;
+				let x = dx * Math.cos(angle) - dy * Math.sin(angle);
+				let y = dx * Math.sin(angle) + dy * Math.cos(angle);
+				v.x = x + cx;
+				v.y = y + cy;
+			}
+
+			// rotate the cube along the x axis
+			angle = timeDelta * 0.001 * SPEED_X * Math.PI * 2;
+			for (let v of vertices) {
+				let dy = v.y - cy;
+				let dz = v.z - cz;
+				let y = dy * Math.cos(angle) - dz * Math.sin(angle);
+				let z = dy * Math.sin(angle) + dz * Math.cos(angle);
+				v.y = y + cy;
+				v.z = z + cz;
+			}
+
+			// rotate the cube along the y axis
+			angle = timeDelta * 0.001 * SPEED_Y * Math.PI * 2;
+			for (let v of vertices) {
+				let dx = v.x - cx;
+				let dz = v.z - cz;
+				let x = dz * Math.sin(angle) + dx * Math.cos(angle);
+				let z = dz * Math.cos(angle) - dx * Math.sin(angle);
+				v.x = x + cx;
+				v.z = z + cz;
+			}
+
+			// draw each edge
+			for (let edge of edges) {
+				ctx.beginPath();
+				ctx.moveTo(vertices[edge[0]].x, vertices[edge[0]].y);
+				ctx.lineTo(vertices[edge[1]].x, vertices[edge[1]].y);
+				ctx.stroke();
+			}
+
+			// call the next frame
+			requestAnimationFrame(loop);
+		}
+	</script>
+</body>
+</html>
